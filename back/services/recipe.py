@@ -39,11 +39,13 @@ def deleteRecipe(id):
         return { "id": recipe.id }
     return { "message": "recipe not found!" }
 
-def putRecipe(id, data):
+def putRecipe(data,id):
     recipe = Recipe.query.filter_by(id=id).first()
     if recipe != None:
         recipe.title = data["title"]
         recipe.ingredients = data["ingredients"]
         recipe.preparation = data["preparation"]
-        return { "id": recipe.id }
+        db.session.add(recipe)
+        db.session.commit()
+        return {"message":"Alterado com sucesso!" ,"id": recipe.id }
     return { "message": "recipe not found!" }

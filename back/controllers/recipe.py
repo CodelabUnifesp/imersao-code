@@ -19,8 +19,10 @@ class RecipeId(Resource):
     def get(self, id):
         return getRecipe(id)
 
-    def put(self, data, id):
-        return putRecipe(data, id)
+    def put(self, id):
+        data = request.get_json()
+        print (data, id)
+        return putRecipe(data,id)
 
     def delete(self, id):
         return deleteRecipe(id)
