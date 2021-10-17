@@ -8,5 +8,6 @@ class Recipe(db.Model):
     ingredients = db.Column(db.String(1024), nullable=False)
     preparation = db.Column(db.String(1024), nullable=False)
     def __init__(self, title, ingredients, preparation):
+        self.title       = title
         self.ingredients = ingredients
         self.preparation = preparation

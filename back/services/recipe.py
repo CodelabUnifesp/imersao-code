@@ -4,10 +4,16 @@ from app import db
 def getRecipe(id):
     recipe = Recipe.query.filter_by(id=id).first()
     if recipe != None:
-        return recipe.__dict__
+        response = {
+            "id":recipe.id,
+            "ingredients":recipe.ingredients,
+            "preparation":recipe.preparation
+        }
+        return response
     return { "message": "recipe not found!" }
 
 def postRecipe(data):
+    print(data)
     recipe = Recipe(data["title"], data["ingredients"], data["preparation"])
     db.session.add(recipe)
     db.session.commit()
