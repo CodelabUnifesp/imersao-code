@@ -31,6 +31,7 @@ const Receita = (props) => {
       preparation: recipePreparation
     }
     await api.put(`/recipes/${props.match.params.id}`, requestBody)
+    alert("Receita editada!");
   }
 
   return (
