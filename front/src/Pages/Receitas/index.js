@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FiX } from "react-icons/fi";
-import api from '../../Services/api';
+import api from "../../Services/api";
 import Button from "../../Components/Button";
 import Recipe from "../../Components/Recipe";
 import {
@@ -26,11 +26,11 @@ const Receita = () => {
     const response = await api.get("/recipes");
     console.log(response);
     await setRecipes(response.data.recipes);
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchRecipes();
-  },[])
+  }, []);
 
   const addNewRecipe = async () => {
     const newRecipe = {
@@ -46,7 +46,7 @@ const Receita = () => {
   };
 
   const deleteRecipe = async (id) => {
-    if (window.confirm('Tem certeza que quer deletar essa receita?')) {
+    if (window.confirm("Tem certeza que quer deletar essa receita?")) {
       const recipeToDelete = recipes.find((recipe) => {
         return recipe.id === id;
       });
@@ -54,7 +54,6 @@ const Receita = () => {
       await api.delete(`/recipes/${recipeToDelete.id}`);
 
       fetchRecipes();
-
     } else {
       return;
     }
