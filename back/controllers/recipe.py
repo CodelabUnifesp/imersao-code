@@ -12,7 +12,7 @@ class Recipe(Resource):
         data = request.get_json()
         return postRecipe(data)
     def get(self):
-        return "OK"
+        return getAll()
 
 @api.route('/<int:id>')
 class RecipeId(Resource):

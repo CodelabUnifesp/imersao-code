@@ -1,6 +1,18 @@
 from database.recipe import Recipe
 from app import db
 
+def getAll():
+    recipes = Recipe.query.all()
+    results = []
+    for recipe in recipes:
+        results.append({
+            "id": recipe.id,
+            "ingredients": recipe.ingredients,
+            "preparation": recipe.preparation,
+        })
+
+    return {"count": len(results), "recipes": results}
+
 def getRecipe(id):
     recipe = Recipe.query.filter_by(id=id).first()
     if recipe != None:
