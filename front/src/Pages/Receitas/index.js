@@ -34,29 +34,27 @@ const Receita = () => {
   },[])
 
   const addNewRecipe = async () => {
-    const lastRecipe = receitonas[receitonas.length-1];
-    const newId = lastRecipe.id + 1;
-
     const newRecipe = {
-      id: newId,
       title: title,
       ingredients: ingredients,
       preparation: preparation,
-      recipes: recipes
     };
-    receitonas.push(newRecipe);
-    await setRecipes(receitonas);
 
+    api.post("/recipes", newRecipe);
     alert("Criada");
     setModalOpen(false);
+    fetchRecipes();
   };
 
   const deleteRecipe = async (id) => {
     if (window.confirm('Tem certeza que quer deletar essa receita?')) {
-      const filteredRecipes = receitonas.filter((recipe) => {
-        return recipe.id !== id;
+      const recipeToDelete = recipes.find((recipe) => {
+        return recipe.id === id;
       });
-      setRecipes(filteredRecipes);
+      
+      await api.delete(`/recipes/${recipeToDelete.id}`);
+
+      fetchRecipes();
 
     } else {
       return;
