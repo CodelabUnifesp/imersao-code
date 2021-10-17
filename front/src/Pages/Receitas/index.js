@@ -3,7 +3,6 @@ import { FiX } from "react-icons/fi";
 import api from '../../Services/api';
 import Button from "../../Components/Button";
 import Recipe from "../../Components/Recipe";
-import {receitonas} from '../../Dummy/recipeList';
 import {
   Container,
   RecipesContainer,
@@ -17,7 +16,7 @@ const Receita = () => {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [preparation, setPreparation] = useState("");
-  const [recipes, setRecipes] = useState(receitonas);
+  const [recipes, setRecipes] = useState(null);
 
   const openAddNewRecipeModal = () => {
     setModalOpen(true);
@@ -51,7 +50,7 @@ const Receita = () => {
       const recipeToDelete = recipes.find((recipe) => {
         return recipe.id === id;
       });
-      
+
       await api.delete(`/recipes/${recipeToDelete.id}`);
 
       fetchRecipes();
