@@ -87,10 +87,6 @@ const Receita = () => {
               ></input>
             </FieldRow>
             <FieldRow>
-              <span>Foto</span>
-              <input type="file"></input>
-            </FieldRow>
-            <FieldRow>
               <span>Ingredientes</span>
               <textarea
                 value={ingredients}
