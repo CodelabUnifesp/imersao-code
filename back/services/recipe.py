@@ -19,6 +19,7 @@ def getRecipe(id):
     if recipe != None:
         response = {
             "id":recipe.id,
+            "title": recipe.title,
             "ingredients":recipe.ingredients,
             "preparation":recipe.preparation
         }
