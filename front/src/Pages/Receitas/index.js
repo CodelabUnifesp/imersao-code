@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiX } from "react-icons/fi";
+import api from '../../Services/api';
 import Button from "../../Components/Button";
 import Recipe from "../../Components/Recipe";
 import {receitonas} from '../../Dummy/recipeList';
@@ -11,8 +12,6 @@ import {
   FieldRow,
 } from "./styles.js";
 
-
-
 const Receita = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [title, setTitle] = useState("");
@@ -23,6 +22,16 @@ const Receita = () => {
   const openAddNewRecipeModal = () => {
     setModalOpen(true);
   };
+
+  const fetchRecipes = async () => {
+    const response = await api.get("/recipes");
+    console.log(response);
+    await setRecipes(response.data.recipes);
+  }
+
+  useEffect(()=>{
+    fetchRecipes();
+  },[])
 
   const addNewRecipe = async () => {
     const lastRecipe = receitonas[receitonas.length-1];
