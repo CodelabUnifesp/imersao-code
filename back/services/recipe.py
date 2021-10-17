@@ -7,6 +7,7 @@ def getAll():
     for recipe in recipes:
         results.append({
             "id": recipe.id,
+            "title": recipe.title,
             "ingredients": recipe.ingredients,
             "preparation": recipe.preparation,
         })
