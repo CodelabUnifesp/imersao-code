@@ -22,6 +22,8 @@ def postRecipe(data):
 def deleteRecipe(id):
     recipe = Recipe.query.filter_by(id=id).first()
     if recipe != None:
+        db.session.delete(recipe)
+        db.session.commit()
         return { "id": recipe.id }
     return { "message": "recipe not found!" }
 
