@@ -39,7 +39,7 @@ export const OverlayContent = styled.div`
     position: absolute;
     opacity: 1;
     width: 50%;
-    height: 50%;
+    min-height: 60%;
     background-color: #fff;
     display: flex;
     flex-direction: column;
